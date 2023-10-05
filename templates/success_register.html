@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="icon" type="image/png" href="https://gcdnb.pbrd.co/images/cPhCVrB22ZLU.jpg?o=1">
+
+   
+
+
+  <title>YumRadar</title>
+
+</head>
+
+<div id="loader" class="loader"></div>
+
+<body>
+  
+<style>
+
+.container{
+
+display: flex;
+align-items: center;
+height: 1000px;
+width: 100%;
+flex-direction: column;
+ gap: 20px;
+
+ min-width: 369px;
+}
+
+a{
+
+text-decoration: none;
+color: white;
+
+}
+
+.Succesful{
+
+padding: 0 15px;
+background-color: rgb(197, 67, 95);
+font-size: 20px;
+font-weight: bold;
+color: white;
+letter-spacing: 1px;
+border-radius: 10px;
+transition: 0.3s;
+cursor: pointer;
+margin-top: 10px;
+-webkit-animation: slide-in-elliptic-top-fwd 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s both;
+	        animation: slide-in-elliptic-top-fwd 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s both;
+}
+
+
+.Succesful:hover{
+
+
+  background-color: rgb(197, 67, 95);
+  
+}
+
+img{
+
+width: 300px;
+height: 300px;
+-webkit-animation: slide-in-elliptic-top-fwd 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s both;
+	        animation: slide-in-elliptic-top-fwd 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s both;
+
+}
+
+p {
+
+  -webkit-animation: slide-in-elliptic-top-fwd 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s both;
+	        animation: slide-in-elliptic-top-fwd 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s both;
+
+}
+
+
+@media (max-width: 768px){
+
+
+  img{
+
+    width: 200px;
+    height: 200px;
+    
+    }
+    
+
+
+    
+.Succesful{
+
+  padding: 2 1px;
+  background-color: rgb(197, 67, 95);
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  letter-spacing: 1px;
+  border-radius: 10px;
+  transition: 0.3s;
+  cursor: pointer;
+ 
+  }
+  
+  p{
+
+    font-size: 18px;
+
+  }
+
+}
+
+
+@-webkit-keyframes slide-in-elliptic-top-fwd {
+  0% {
+    -webkit-transform: translateY(-600px) rotateX(-30deg) scale(0);
+            transform: translateY(-600px) rotateX(-30deg) scale(0);
+    -webkit-transform-origin: 50% 100%;
+            transform-origin: 50% 100%;
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0) rotateX(0) scale(1);
+            transform: translateY(0) rotateX(0) scale(1);
+    -webkit-transform-origin: 50% 1400px;
+            transform-origin: 50% 1400px;
+    opacity: 1;
+  }
+}
+@keyframes slide-in-elliptic-top-fwd {
+  0% {
+    -webkit-transform: translateY(-600px) rotateX(-30deg) scale(0);
+            transform: translateY(-600px) rotateX(-30deg) scale(0);
+    -webkit-transform-origin: 50% 100%;
+            transform-origin: 50% 100%;
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0) rotateX(0) scale(1);
+            transform: translateY(0) rotateX(0) scale(1);
+    -webkit-transform-origin: 50% 1400px;
+            transform-origin: 50% 1400px;
+    opacity: 1;
+  }
+}
+
+.loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 7px solid #f3f3f3;
+  border-top: 7px solid #67df30;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 0.7s linear infinite;
+  display: none; /* Add this line to hide the spinner by default */
+  z-index: 9999;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+</style>
+
+
+<div class="container">
+
+
+
+<img src="   https://cdn-icons-png.flaticon.com/512/4814/4814961.png " alt="" style="margin-top: 100px;">
+  
+
+<p style="font-size: 24px; letter-spacing: 1px; font-weight: bold; color:rgb(211, 73, 73)">You have successfully registered</p>
+
+<div class="Succesful">
+
+
+ <a onclick="redirectToDetails('{{ url_for('login') }}')"> <p>Continue to login<i class="fa-solid fa-right-long" style="margin-left: 10px;"></i></p></a>
+
+</div>
+
+
+
+</div>
+
+
+
+
+</body>
+</html>
+
+
+
+<script>
+
+
+
+  function redirectToDetails(url) {
+      showLoader(); // Show the loading spinner when search starts
+      setTimeout(() => {
+        // Perform the search operation or submit the form
+        // ...
+        window.location.href = url;
+        hideLoader();
+      }, 900); // Adjust the delay as needed
+    }
+  
+    document.addEventListener("DOMContentLoaded", function () {
+      // Hide the loading spinner once the page has finished loading
+      hideLoader();
+    });
+  
+  
+  
+  
+    function showLoader() {
+      const loader = document.getElementById("loader");
+      loader.style.display = "block";
+    }
+  
+    function hideLoader() {
+      const loader = document.getElementById("loader");
+      loader.style.display = "none";
+    }
+
+</script>

@@ -1,0 +1,281 @@
+*{
+
+padding: 0;
+margin: 0;
+
+}
+
+
+.sticky {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    width: 100%;
+  }
+
+
+
+
+
+body{
+    
+    background-color: #f4f4f4;
+}
+
+
+.Container {
+    margin: 0 auto;
+    max-width: 1300px;
+    width: 100%;
+    padding: 18px;
+    font-family: Arial, sans-serif;
+    margin-top: 40px;
+    min-width: 414px;
+    
+
+  
+
+}
+
+
+
+.Container h2 {
+  margin-bottom: 10px;
+  font-size: 28px;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  margin-left: 10px;
+  margin-bottom: 20px;
+  color: rgb(218, 48, 85);
+  font-family: 'Times New Roman';
+  
+  
+}
+
+
+
+.restaurant-table {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 60px;
+  border: 2px solid rgb(236, 212, 212);
+  border-radius: 10px;
+  background-color: rgba(224, 224, 224, 0.041);
+
+
+}
+
+.restaurant-link{
+
+text-decoration: none;
+
+}
+
+.restaurant{
+
+width: 210px;
+height: 250px;
+margin-left: 50px;
+margin-right: 50px;
+margin-bottom: 50px;
+margin-top: 50px;
+
+display: grid;
+grid-template-rows: 1fr 1fr;
+border-radius: 10px;
+box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+cursor: pointer;
+transition: 0.3s;
+-webkit-animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s both;
+animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s both;
+
+}
+
+  .restaurant:hover{
+
+    
+
+      transform: scale(1.1);
+
+      .details_container{
+
+      background-color: rgb(231, 231, 231);
+
+    }
+
+
+    .resto_name{
+
+      color: black;
+   
+    }
+
+  }
+
+
+.image_container{
+
+max-width: 210px;
+max-height: 125px;
+width: 100%;
+height: 100%;
+background-color: gainsboro;
+border-radius: 10px 10px 0 0;
+
+
+}
+  .image_container img{
+
+    max-width: 210px;
+    max-height: 150px;
+    min-width: 210px;
+    min-height: 150px;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px 10px 0 0;
+    border: 1px rgb(211, 211, 211) solid;
+
+  }
+
+
+
+.details_container{
+
+background-color: rgb(255, 255, 255);
+border-radius: 0 0 10px 10px;
+box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+display: grid;
+grid-template-rows: 40px 1fr;
+transition: 0.3s;
+
+}
+
+
+  .resto_name{
+    margin-left: 8px;
+    margin-right: 8px;
+    border-bottom: solid rgb(202, 202, 202) 1px;
+    display: flex;
+    justify-content: center;
+    font-size: 17px;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: rgb(0, 0, 0);
+    margin-top: 10px;
+    font-family: 'Times New Roman';
+    letter-spacing: 1px;
+  }
+
+  .details{
+    gap: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Times New Roman';
+    font-size: 17px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: rgb(0, 0, 0);
+  }
+
+  .location{
+
+    margin-top: 8px;
+    
+  }
+
+  .ratings{
+
+
+
+    
+  }
+
+  .category{
+
+    color: rgb(218, 48, 85);
+    margin-bottom: 5px;
+
+  }
+
+
+  @media (max-width: 768px){
+
+
+    .restaurant{
+
+      width: 190px;
+      height: 220px;
+
+    }
+
+    .restaurant-table{
+
+      justify-content: center;
+
+    }
+
+    .Container h2 {
+
+      font-size: 24px;
+
+    }
+
+
+  }
+
+
+
+
+
+  .loader {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 7px solid #f3f3f3;
+    border-top: 7px solid #67df30;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 0.7s linear infinite;
+    display: none; /* Add this line to hide the spinner by default */
+    z-index: 9999;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+
+
+
+  @-webkit-keyframes scale-in-center {
+    0% {
+      -webkit-transform: scale(0);
+              transform: scale(0);
+      opacity: 1;
+    }
+    100% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+      opacity: 1;
+    }
+  }
+  @keyframes scale-in-center {
+    0% {
+      -webkit-transform: scale(0);
+              transform: scale(0);
+      opacity: 1;
+    }
+    100% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+      opacity: 1;
+    }
+  }
+  

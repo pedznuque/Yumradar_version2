@@ -1,0 +1,155 @@
+* {
+
+    padding: 0;
+    margin: 0;
+    
+    }
+    
+    
+    
+    
+    
+    
+    .main_container {
+    
+    
+    width: 100%;
+    height:auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 5%;
+    }
+    
+    
+    .message_report_container {
+
+        background-color: white;
+        width: 50%;
+
+        height: auto;
+        margin-top: 10%;
+        box-shadow: 3px 6px 18px -8px rgba(0,0,0,0.75);
+        -webkit-box-shadow: 3px 6px 18px -8px rgba(0,0,0,0.75);
+        -moz-box-shadow: 3px 6px 18px -8px rgba(0,0,0,0.75);
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        font-family: 'Times New Roman', Times, serif;
+        padding-bottom: 4%;
+        -webkit-animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+
+
+    }
+
+    .go_back_button {
+        
+        margin-left: 3%;
+        background-color: rgb(255, 96, 122);
+        margin-top: 3%;
+        padding: 1%;
+        padding-inline: 1.5%;
+        border-radius: 50%;
+        cursor: pointer;
+        color: white;
+        font-size: clamp( 5px, 1.6vw, 20px);
+        
+
+    }
+
+
+    .user_ticket_logo {
+
+        margin-top: 3%;
+        align-self: center;
+        font-weight: bold;
+        font-size: clamp( 5px, 1.6vw, 20px);
+
+    }
+
+    .from_email_container {
+
+        margin-top: 5%;
+        margin-left: 10%;
+        font-size: clamp( 5px, 1.6vw, 20px);
+        letter-spacing: 1px;
+        
+
+    }
+
+    .issue_title_container {
+
+        margin-top: 2%;
+        margin-left: 10%;
+       
+        letter-spacing: 1px;
+        font-size: clamp( 5px, 1.6vw, 20px);
+
+    }
+    
+
+    .description_container {
+
+
+        width: 80%;
+        background-color: rgb(242, 243, 243);
+        margin-left: 10%;
+        margin-top: 5%;
+        padding-top: 2%;
+        padding-bottom: 10%;
+        border-radius: 5px;
+        padding-inline: 1%;
+        font-size: clamp( 5px, 1.6vw, 20px);
+
+    }
+
+    
+    
+    .loader {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 7px solid #f3f3f3;
+        border-top: 7px solid #67df30;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 0.7s linear infinite;
+        display: none; /* Add this line to hide the spinner by default */
+        z-index: 9999;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+
+
+      @-webkit-keyframes scale-in-center {
+        0% {
+          -webkit-transform: scale(0);
+                  transform: scale(0);
+          opacity: 1;
+        }
+        100% {
+          -webkit-transform: scale(1);
+                  transform: scale(1);
+          opacity: 1;
+        }
+      }
+      @keyframes scale-in-center {
+        0% {
+          -webkit-transform: scale(0);
+                  transform: scale(0);
+          opacity: 1;
+        }
+        100% {
+          -webkit-transform: scale(1);
+                  transform: scale(1);
+          opacity: 1;
+        }
+      }

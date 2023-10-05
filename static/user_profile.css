@@ -1,0 +1,164 @@
+*{
+
+padding: 0;
+margin: 0;
+
+}
+
+
+
+
+  
+  
+  
+
+body{
+
+  display: flex;
+  
+  flex-direction: column;
+  }
+  
+  
+  .Back_container{
+  
+  display: flex;
+  align-items: center;
+  
+  max-width: 1263px;
+  width: 100%;
+  height: 60px;
+  margin-top: 60px;
+  }
+  
+  .Back_container p{
+  
+  font-size: 25px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: rgb(128, 128, 128);
+  cursor: pointer;
+  }
+
+
+
+
+
+
+
+  
+
+  .user-profile {
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    background-color: #ffffff;
+    font-family: 'Times New Roman';
+    letter-spacing: 1px;
+    border-radius: 5px;
+    margin-top: 40px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    margin: 0;
+    font-weight: normal;
+    font-weight: bold;
+  }
+
+  h1{
+
+    margin-bottom: 10px;
+
+  }
+
+  .user-details {
+    margin-bottom: 20px;
+   
+  }
+
+  .email {
+    margin-top: 10px;
+ 
+  }
+
+  .reviews {
+   
+ 
+ 
+  }
+
+  .reviews ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .reviews li {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    padding: 20px;
+    background-color: rgb(255, 255, 255);
+  }
+
+  .review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .review-header a {
+    text-decoration: none;
+
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .review-header span {
+    
+    font-size: 14px;
+  }
+
+  .delete-form {
+    display: inline-block;
+  }
+
+
+
+  .review-content {
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+
+  .review-author {
+
+    font-size: 14px;
+  }
+
+
+
+  .loader {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 7px solid #f3f3f3;
+    border-top: 7px solid #67df30;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 0.7s linear infinite;
+    display: none; /* Add this line to hide the spinner by default */
+    z-index: 9999;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }

@@ -1,0 +1,218 @@
+*{
+
+
+padding: 0;
+margin: 0;
+
+}
+
+
+
+.Container{
+margin: 0 auto;
+max-width: 1263px;
+width: 50%;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+min-width: 414px;
+gap: 10px;
+background-color: rgb(255, 255, 255);
+margin-top: 5%;
+border-radius: 10px;
+margin-bottom: 5%;
+box-shadow: 4px 4px 15px -5px rgba(0,0,0,0.75);
+-webkit-box-shadow: 4px 4px 15px -5px rgba(0,0,0,0.75);
+-moz-box-shadow: 4px 4px 15px -5px rgba(0,0,0,0.75);
+
+}
+
+.Circle{
+
+  width: 150px;
+  height: 150px;
+ 
+  border-radius: 50%;
+  
+
+}
+
+
+.Circle img{
+
+
+width: 150px;
+height: 150px;
+border-radius: 50%;
+border: 1px solid rgb(218, 48, 85);
+object-fit: cover;
+}
+
+.title{
+
+font-size: 25px;
+font-family: 'Times New Roman';
+letter-spacing: 1px;
+font-weight: bold;
+margin-top: 30px;
+margin-bottom: 50px;
+
+}
+
+
+.upload_button{
+
+  background-color: rgb(218, 48, 85);
+  font-size: 18px;
+  padding: 5px 15px;
+  margin-top: 10px;
+  border-radius: 5px;
+  
+  
+  
+
+}
+
+.Container a {
+
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  
+}
+
+
+
+
+.title_location{
+
+  font-size: 19px;
+  font-family: 'Times New Roman';
+  letter-spacing: 1px;
+  
+  margin-top:30px;
+ 
+
+
+}
+
+
+.form_select_location {
+
+display: flex;
+flex-direction: row;
+
+
+}
+
+
+.location_submit{
+  border: none; 
+  padding: 2.5px 15px;
+  background-color: rgb(218, 48, 85);
+  border-radius: 4px;
+  color: white;
+  
+}
+
+
+
+
+.Username_form{
+
+  margin-top: 50px;
+
+
+}
+
+
+
+
+
+.title_username{
+
+  font-size: 19px;
+  font-family: 'Times New Roman';
+  letter-spacing: 1px;
+  text-align: center;
+  margin-bottom: 30px;
+
+
+}
+
+
+label{
+
+  font-size: 18px;
+  font-family: 'Times New Roman';
+  font-weight: bold;
+
+  }
+.Username_form input{
+
+  border:  1px solid rgb(102, 102, 102);
+  border-radius: 5px;
+  width: 300px;
+  margin-bottom: 15px;
+  padding: 5px;
+
+}
+.Username_form button{
+  margin-left: 80px;
+  margin-bottom: 100px;
+  border: none;
+  padding: 5px 15px;
+  border-radius:  5px;
+  background-color: rgb(218, 48, 85);
+  color: white;
+}
+
+
+.error_container{
+
+text-align: center;
+
+margin-bottom: 10px;
+color: red;
+font-weight: bold;
+}
+
+
+
+.Circle_admin img{
+
+width: 200px;
+height: 200px;
+
+}
+
+
+
+
+.loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 7px solid #f3f3f3;
+  border-top: 7px solid #67df30;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 0.7s linear infinite;
+  display: none; /* Add this line to hide the spinner by default */
+  z-index: 9999;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+
+
+
+
+
+

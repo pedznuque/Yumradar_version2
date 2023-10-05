@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/report_an_issue_form.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/png" href="https://gcdnb.pbrd.co/images/cPhCVrB22ZLU.jpg?o=1">
+
+
+    
+
+    <title>Yumradar</title>
+
+
+
+</head>
+<body>
+    
+
+<div class="main_container">
+
+    <div class="report_form">
+        <div class="report_title"> Report an issue <i class="fa-solid fa-headset" style="margin-left: 1%;"></i></div>
+        <form action="/submit_issue" method="POST">
+            <div class="Enter_emai_label">Enter your e-mail address</div>
+            <div class="enter_email_container">
+                <input type="email" name="email" placeholder="Enter your e-mail" required>
+            </div>
+
+            <div class="Enter_title_label">Enter the issue title</div>
+            <div class="enter_title_container">
+                <input type="text" name="title" placeholder="Enter the issue title" required>
+            </div>
+
+            <div class="enter_text_container">
+                <textarea name="description" cols="30" rows="10" placeholder="Enter text here" required></textarea>
+            </div>
+
+            <div class="submit_button">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+
+</div>
+
+
+
+
+<script>
+    function validateForm() {
+        var emailInput = document.getElementById("email");
+        var emailError = document.getElementById("email-error");
+        
+        // Regular expression for validating email addresses
+        var emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+
+        if (!emailRegex.test(emailInput.value)) {
+            emailError.textContent = "Invalid email format";
+            emailInput.focus();
+            return false; // Prevent form submission
+        } else {
+            emailError.textContent = ""; // Clear any previous error message
+            return true; // Allow form submission
+        }
+    }
+</script>
+
+</body>
+</html>
+

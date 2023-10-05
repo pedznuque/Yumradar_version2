@@ -1,0 +1,138 @@
+*{
+
+    padding: 0;
+    margin: 0;
+
+}
+
+
+body{
+
+
+
+}
+
+
+.main_container {
+
+width: 100%;
+height: auto;
+display: flex;
+
+align-items: center;
+flex-direction: column;
+padding-bottom: 5%;
+
+}
+
+.Back_container{
+
+  font-family: 'Times New Roman';
+
+  display: flex;
+  align-items: center;
+  
+  max-width: 1263px;
+  width: 100%;
+  height: 60px;
+  margin-top: 5%;
+  
+  }
+
+
+
+  .Back_container p{
+
+    font-size: 25px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: rgb(128, 128, 128);
+    cursor: pointer;
+    }
+
+
+
+.title_userlist {
+
+font-family: 'Times New Roman';
+font-size: 30px;
+font-weight: bold;
+
+
+}
+
+.table-container{
+
+max-width: 1263px;
+width: 100%;
+margin: 0 auto;
+display: flex;
+flex-direction: column;
+align-items: center;
+margin-top: 60px;
+}
+
+table{
+width: 80%;
+padding: 10px;
+
+
+
+}
+
+td{
+
+  
+
+
+}
+
+
+thead{
+color: rgb(255, 255, 255);
+background-color: rgb(236, 66, 103);
+height: 60px;
+}
+
+tbody td{
+
+background-color: rgb(255, 255, 255);
+padding: 10px;
+border: solid 2px rgb(223, 223, 223);
+font-weight: bold;
+font-family: 'Times New Roman';
+}
+
+
+
+img{
+
+border-radius: 50%;
+width: 100px;
+height: 100px;
+  
+}
+
+
+button
+
+
+.loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 7px solid #f3f3f3;
+  border-top: 7px solid #67df30;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 0.7s linear infinite;
+  display: none; /* Add this line to hide the spinner by default */
+  z-index: 9999999;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

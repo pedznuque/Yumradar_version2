@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login Form</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="icon" type="image/png" href="https://gcdnb.pbrd.co/images/cPhCVrB22ZLU.jpg?o=1">
+
+
+  
+
+  <title>YumRadar</title>
+  <style>
+
+body{
+
+  display: grid;
+
+  justify-items: center;
+
+}
+
+.login-form {
+  width: 100%;
+  max-width: 400px;
+  margin-top: 160px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  -webkit-animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+h2 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 92%;
+  padding: 10px 15px;
+  background-color: #f7f7f7;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #333;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  outline: none;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 12px 0px;
+  border: none;
+  background-color: rgb(218, 48, 85);;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.btn:hover {
+  background-color: rgb(184, 90, 110);;
+}
+
+
+.invalid {
+  border: 1px solid #f00;
+}
+
+.show-error {
+  display: block;
+}
+
+
+
+/* Media Queries */
+
+@media only screen and (max-width: 768px) {
+  .login-form {
+    max-width: 90%;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .login-form {
+    max-width: 100%;
+    padding: 10px;
+  }
+  
+  h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+  
+  label {
+    font-size: 14px;
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+  
+  .btn {
+    padding: 10px 0px;
+    font-size: 14px;
+  }
+  
+  .error-msg {
+    font-size: 12px;
+    margin-top: 3px;
+  }
+}
+
+
+@-webkit-keyframes scale-in-center {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes scale-in-center {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
+
+  </style>
+
+</head>
+<body>
+	<div class="login-form">
+        <h2>Login</h2>
+        
+        <form action="{{url_for('login')}}" method="post" >
+          <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" required>
+            {% if error %}
+                <p class="error_message" style="margin-top: 30px;">{{ error }}</p>
+            {% endif %}
+          </div>
+
+          
+
+          <div class="form-group">
+            <button type="submit" class="btn">Login</button>
+          </div>
+        </form>
+
+        <div class="register_here"><a href="/register" style="text-decoration: none; color:rgb(218, 48, 85); margin-top: 20px;">Don't have an account yet? register here</a></div>
+      </div>
+
+    
+      
+</body>
+</html>

@@ -1,0 +1,280 @@
+* {
+
+padding: 0;
+margin: 0;
+
+}
+
+body {
+  width: 100%;
+  height: auto;
+
+
+}
+
+
+.My_Bookmarks {
+
+margin-left: 44.7%;
+margin-top: 2%;
+font-family: 'Times New Roman', Times, serif;
+font-weight: bold;
+font-size: clamp(5px, 2vw, 30px);
+
+}
+
+.main_container {
+
+border: 0.2px solid rgb(255, 165, 180);
+border-radius: 20px;
+width: 60%;
+margin: 0 auto;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+padding-top: 3%;
+padding-bottom: 5%;
+margin-top: 5%;
+margin-bottom: 5%;
+}
+
+
+p.no_bookmarks_yet {
+
+font-weight: bold;
+font-family: 'Times New Roman', Times, serif;
+font-size: clamp(5px, 2vw, 30px);
+
+}
+
+.placeholder_bookmarks {
+
+margin-top: 5%;
+width: 60%;
+aspect-ratio: 10/1;
+background-color: rgb(255, 255, 255);
+
+display: flex;
+flex-direction: row;
+border-radius: 10px;
+box-shadow: 11px 12px 21px -18px rgba(0,0,0,0.75);
+-webkit-box-shadow: 11px 12px 21px -18px rgba(0,0,0,0.75);
+-moz-box-shadow: 11px 12px 21px -18px rgba(0,0,0,0.75);
+
+-webkit-animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s both;
+animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s both;
+}
+
+
+
+.placeholder_image {
+
+
+width: 30%;
+
+border:  0.5px solid rgb(196, 193, 193);
+border-top-left-radius: 10px;
+border-bottom-left-radius: 10px;
+
+}
+
+
+.placeholder_details {
+
+
+font-family: 'Times New Roman';
+display: flex;
+align-items: center;
+justify-content: center;
+padding-left: 5%;
+padding-right: 2%;
+width: 35%;
+padding-block: 3%;
+
+
+
+}
+
+
+.placeholder_action {
+
+
+width: 35%;
+display: flex;
+justify-content: center;
+align-items: center;
+
+}
+
+.delete_button {
+
+background-color: rgb(250, 102, 115);
+padding-inline: 10%;
+padding-block: 4%;
+border-radius: 5px;
+color: white;
+font-size: clamp(5px, 1vw, 15px);
+}
+
+.placeholder_bookmarks img {
+
+object-fit: cover;
+width: 100%;
+height: 100%;
+border-top-left-radius: 10px;
+border-bottom-left-radius: 10px;
+
+
+}
+
+
+.card-title {
+
+
+  font-size: clamp(5px, 1.5vw, 25px);
+
+}
+
+.card-text {
+
+
+  font-size: clamp(5px, 1vw, 15px)
+
+}
+
+
+
+
+.loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 7px solid #f3f3f3;
+  border-top: 7px solid #67df30;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 0.7s linear infinite;
+  display: none; /* Add this line to hide the spinner by default */
+  z-index: 9999;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+  
+
+
+
+
+@media (max-width: 1070px) { 
+
+
+  .main_container {
+
+    width: 80%;
+
+  }
+
+  .placeholder_bookmarks {
+
+
+    width: 90%;
+
+  }
+
+  .card-title {
+
+
+    font-size: clamp(5px, 2vw, 40px);
+  
+  }
+  
+  .card-text {
+  
+  
+    font-size: clamp(5px, 1.5vw, 35px)
+  
+  }
+
+
+  .delete_button {
+
+    font-size: clamp(5px, 1.5vw, 35px);
+
+  }
+
+}
+
+@media (max-width: 414px) {
+
+
+  .main_container {
+
+    width: 90%;
+
+  }
+
+  .placeholder_bookmarks {
+
+
+    width: 90%;
+
+  }
+
+  .card-title {
+
+
+    font-size: clamp(5px, 3vw, 55px);
+  
+  }
+  
+  .card-text {
+  
+  
+    font-size: clamp(5px, 2vw, 40px)
+  
+  }
+
+
+  .delete_button {
+
+    font-size: clamp(5px, 2.5vw, 40px);
+
+  }
+
+
+
+
+}
+
+
+@-webkit-keyframes scale-in-center {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes scale-in-center {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+}

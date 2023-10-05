@@ -1,0 +1,377 @@
+* {
+
+padding: 0;
+margin: 0;
+
+}
+
+
+
+.sample {
+
+background-color: #67df30;
+
+}
+
+
+
+
+
+
+.dash_board_main_container {
+    
+    
+    background-color: #f4f4f4;
+    width: 100%;
+    height: auto;
+    align-items: center;
+    
+    display: flex;
+    
+    flex-direction: column;
+    padding-bottom: 5%;
+    
+    
+    }
+    
+    
+    .dash_board_child_container {
+    background-color: white;
+    
+    width: 70%;
+    aspect-ratio: 13/5.5;
+    margin-top: 4%;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 3px 3px 12px -6px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 3px 3px 12px -6px rgba(0,0,0,0.75);
+    -moz-box-shadow: 3px 3px 12px -6px rgba(0,0,0,0.75);
+    
+    }
+    
+    .admin_dashboard_title_container {
+    
+    
+    height: 18%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    }
+    
+    .admin_dashboard_title_background {
+    
+    
+    background-color: rgb(245, 245, 245);
+    width: 99%;
+    height: 92%;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    
+    }
+    
+    .admin_dashboard_title_container span {
+    
+    margin-left: 5%;
+    color: rgb(0, 0, 0);
+    font-family: 'Young Serif', serif;
+
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-size: clamp(5px, 2.8vw, 60px); 
+        
+    
+    }
+    
+    .admin_dashboard_title_background i {
+    
+    margin-left: 1%;
+    margin-top: 0.5%;
+    color: rgb(112, 31, 45);
+    font-size: clamp(5px, 1.5vw, 40px); 
+    
+    }
+    
+    .statistic_container {
+    
+    margin-left: 25%;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 1.5%;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Young Serif', serif;
+    font-weight: bold;
+
+    
+    }
+    
+    .total {
+    
+    background-color: rgb(255, 255, 255);
+    width: 31%;
+    height: 80%;
+    border-radius: 5px;
+    border: 0.5px solid rgb(233, 233, 233);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    }
+    
+    .total_name_and_logo_container {
+    
+    
+    height: 50%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 1%;
+    
+    
+    }
+    
+    .total_name_container {
+    
+    
+    margin-left: 10%;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    font-size: clamp( 5px, 0.7vw, 13px);
+    
+    }
+    
+    .logo_container {
+    
+    margin-top: 2%;
+    margin-left: 6%;
+   
+    
+    }
+    
+    .total_number {
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50%;
+    width: 100%;
+    font-size: clamp( 5px, 1.6vw, 22px);
+    font-weight: bold;
+    
+    } 
+    
+    .admin_dashboard_functions_container {
+    
+    
+    height: 82%;
+    
+    
+    display: flex;
+    flex-direction: row;
+    }
+    
+    
+    .select_container {
+    
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4%;
+    
+    }
+    
+    .total_restaurants {
+    
+    width: 60%;
+    
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    
+    
+    }
+
+    .total_restaurant_text {
+
+        position: absolute;
+        font-family: 'Young Serif', serif;
+
+        font-size: clamp(5px, 1.2vw, 20px);
+
+    }
+    
+ 
+    
+    .select {
+    
+    background-color: rgb(250, 68, 102);
+    width: 80%;
+    height: 35%;
+    margin-left: 8%;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: clamp( 5px, 1vw, 15px);
+    font-family: 'Young Serif', serif;
+    letter-spacing: 2px;
+    font-weight: bold;
+    box-shadow: 3px 3px 12px -6px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 3px 3px 12px -6px rgba(0,0,0,0.75);
+    -moz-box-shadow: 3px 3px 12px -6px rgba(0,0,0,0.75);
+        border-radius: 5px;
+    font-size: clamp(5px, 1.5vw, 40px); 
+    cursor: pointer;
+    
+    }
+    
+    .select:nth-child(1) {
+    
+    
+    }
+    
+    .select i {
+    
+    margin-left: 4%;
+    
+    }
+    
+    .user_list {
+    
+    margin-top: 2%;
+    
+    }
+    
+    
+    
+    .monthly_chart {
+    
+    background-color: white;
+    
+    aspect-ratio: 13/5.5;
+    width: 70%;
+    margin-top: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 3px 3px 12px -6px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 3px 3px 12px -6px rgba(0,0,0,0.75);
+    -moz-box-shadow: 3px 3px 12px -6px rgba(0,0,0,0.75);
+        border-radius: 5px;
+
+    }
+    
+    
+    .monthly_chart_child {
+    
+    background-color: rgb(223, 223, 255);
+    width: 90%;
+    height: 70%;
+    
+    }
+
+
+
+
+
+
+
+.loader {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 7px solid #f3f3f3;
+    border-top: 7px solid #67df30;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 0.7s linear infinite;
+    display: none; /* Add this line to hide the spinner by default */
+    z-index: 9999;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+
+  @media (max-width: 1070px) {
+
+    .dash_board_child_container {
+
+        width: 90%;
+        height: 40%;
+
+    }
+
+    .monthly_chart {
+
+        width: 90%;
+        height: 40%;
+
+    }
+    
+    .total_name_container {
+
+        font-size: clamp( 1px, 1.1vw, 13px);
+
+    }
+
+    .total_number {
+
+        font-size: clamp( 1px, 1.6vw, 22px);
+
+
+    }
+    
+    .select {
+
+
+        font-size: clamp( 5px, 2vw, 25px);
+
+    }
+    
+
+    .total_restaurant_text {
+
+        font-size: clamp(5px, 1.5vw, 25px);
+
+    }
+
+  }
+
+  @media (max-width: 650px) {
+
+
+    .admin_dashboard_title_background i {
+    
+        
+        display: none;
+        
+        }
+
+        .monthly_chart {
+
+            width: 90%;
+            aspect-ratio: 13/6;
+    
+        }
+
+
+
+    
+
+  }
