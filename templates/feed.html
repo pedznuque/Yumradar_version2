@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/feed.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link rel="icon" type="image/png" href="https://gcdnb.pbrd.co/images/cPhCVrB22ZLU.jpg?o=1">
+
+
+
+
+
+</head>
+
+<title>YumRadar</title>
+
+<div id="loader" class="loader"></div>
+
+<body style="background-color: rgb(241, 241, 241)" ;>
+  <div class="sticky">
+    <nav class="navbar navbar-expand-lg"
+    style="background-color: white; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); min-width: 414px; ">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{{ url_for('index') }}"><img src="https://gcdnb.pbrd.co/images/yPa00YmfeCYP.png?o=1" alt=""
+          style="width: 170px; height:60px; border-radius: 10px;"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+
+        <ul class="navbar-nav me-auto mb-2">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" onclick="redirectToDetails('{{ url_for('index') }}')"
+             ><i class="fa-solid fa-house" style="margin-right: 5px;"></i>Home</a>
+          </li>
+
+
+          {% if 'username' in session %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="{{profile_pic_url}}" alt="" class="profile-icon">
+              {{ session['username'] }}
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" onclick="redirectToDetails('{{ url_for('profile') }}')">Profile setting</a>
+              </li>
+              <li><a class="dropdown-item" onclick="redirectToDetails('{{ url_for('bookmarks') }}')">Bookmarks</a></li>
+              <li><a class="dropdown-item" onclick="redirectToDetails('{{ url_for('help_desk') }}')">Help desk</a></li>
+              {% if session['is_admin'] %}
+              <li><a class="dropdown-item" onclick="redirectToDetails('{{ url_for('admin_dashboard') }}')">Admin Dashboard</a></li>
+              {% endif %}
+            </ul>
+            {% else %}
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" onclick="redirectToDetails('{{ url_for('login') }}')"
+            ><i class="fa-solid fa-right-to-bracket"
+                style="margin-right: 5px;"></i>Login</a>
+          </li>
+          {% endif %}
+
+
+
+          {% if 'username' in session %}
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" onclick="redirectToDetails('{{ url_for('logout') }}')"
+              ><i class="fa-solid fa-right-from-bracket"
+                style="margin-right: 5px;"></i>Logout</a>
+          </li>
+        </ul>
+        {% else %}
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" onclick="redirectToDetails('{{ url_for('register') }}')"
+          ><i class="fa-solid fa-user-plus"
+            style="margin-right: 5px;"></i>Register</a>
+        </li>
+        </ul>
+        {% endif %}
+
+
+        <form class="d-flex" role="search" action="{{ url_for('recommend') }}" method="post">
+          <select id="location" name="location">
+            {% for location in location_select %}
+            <option value="{{ location }}"><i class="fa-solid fa-location-dot"></i>{{ location }}</option>
+            {% endfor %}
+          </select>
+          <input class="form-control me-2" type="search" placeholder="Search for Foods, Category, Resto" aria-label="Search " name="value"
+            id="value" style="background-color: rgb(212, 212, 212);">
+          <button class="btn btn-success" onclick="redirectToDetails('{{ url_for('feed') }}')">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  </div>
+
+  <script>
+
+
+  </script>
+
+
+  <div class="Container">
+
+
+    {% for category, restaurants in feed_data.items () %}
+    <h2>{{ category }}</h2>
+
+    <div class="restaurant-table">
+
+      {% for restaurant in restaurants %}
+
+      <a>
+        <div class="restaurant" onclick="redirectToDetails('{{ url_for('details', name=restaurant.resto_id) }}')">
+
+
+          <div class="image_container"><img class="restaurant-image" src="{{ restaurant.image_url }}"></div>
+          <div class="details_container">
+
+            <div class="resto_name">
+              <p class="restaurant-name">{{ restaurant.name }}</p>
+            </div>
+
+            <div class="details">
+              <div class="location"><i class="fa-sharp fa-solid fa-map-location-dot" style="margin-right: 10px;"></i>{{
+                restaurant.location }}</div>
+              <div class="ratings">{{restaurant.overall_rating}}<i class="fa-solid fa-star"
+                  style="margin-left: 5px; font-size:12px"></i></div>
+              <div class="category"><i class="fa-solid fa-martini-glass-citrus"
+                  style="margin-right: 7px; color: rgb(112, 111, 111);"></i>{{ category }}</div>
+            </div>
+          </div>
+
+        </div>
+      </a>
+
+
+
+
+
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    crossorigin="anonymous"></script>
+
+
+
+  <script>
+
+
+    function searchButtonClick() {
+      showLoader(); // Show the loading spinner when search starts
+      setTimeout(() => {
+        // Perform the search operation or submit the form
+        hideLoader();
+      }, 2000); // Adjust the delay as needed
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      // Hide the loading spinner once the page has finished loading
+      hideLoader();
+    });
+
+
+
+
+    function redirectToDetails(url) {
+      showLoader(); // Show the loading spinner when search starts
+      setTimeout(() => {
+        // Perform the search operation or submit the form
+        // ...
+        window.location.href = url;
+        hideLoader();
+      }, 900); // Adjust the delay as needed
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      // Hide the loading spinner once the page has finished loading
+      hideLoader();
+    });
+
+
+
+
+    function showLoader() {
+      const loader = document.getElementById("loader");
+      loader.style.display = "block";
+    }
+
+    function hideLoader() {
+      const loader = document.getElementById("loader");
+      loader.style.display = "none";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Function to show the default location alert
+    function showDefaultLocationAlert() {
+      var confirmDefaultLocation = confirm("Do you want to add default location?");
+
+      // Handle the user's choice
+      if (confirmDefaultLocation) {
+        // Redirect the user to a location selection page or perform any other action
+        window.location.href = "/profile";
+      } else {
+        // Perform any other action if the user chooses not to add default location
+      }
+    }
+
+    // Event listener for page load
+    window.addEventListener("load", function () {
+      // Check the value of has_location
+      var has_location = {{ has_location| lower
+    }}; // Convert Python boolean to JavaScript boolean
+
+    // If has_location is false, show the alert
+    if (has_location === false) {
+      showDefaultLocationAlert();
+    }
+  });
+
+
+
+
+
+
+    function toggleDropdown() {
+      var dropdown = document.querySelector('.dropdown-menu');
+      dropdown.classList.toggle('show');
+      dropdown.style.transition = "transform 0.2s ease-in-out, opacity 0.2s ease-in-out";
+    }
+
+
+    // JavaScript code to sort and reorder the tables based on the number of restaurants
+
+    // Get all the restaurant tables
+    const tables = document.querySelectorAll('.restaurant-table');
+
+    // Create an array to store the table data
+    const tableData = [];
+
+    // Iterate over the tables and store the table data in the array
+    tables.forEach(function (table, index) {
+      const category = table.previousElementSibling.textContent;
+      const restaurantCount = table.querySelectorAll('.restaurant').length;
+      tableData.push({ index: index, category: category, restaurantCount: restaurantCount });
+    });
+
+    // Sort the table data array based on the restaurant count in descending order
+    tableData.sort(function (a, b) {
+      return b.restaurantCount - a.restaurantCount;
+    });
+
+    // Create a document fragment to temporarily store the sorted tables
+    const fragment = document.createDocumentFragment();
+
+    // Remove the existing tables and associated names from the container
+    const container = document.querySelector('.Container');
+    container.innerHTML = '';
+
+    // Track the used category to avoid duplicates
+    const usedcategory = new Set();
+
+    // Reorder the tables based on the sorted table data and append them to the container
+    tableData.forEach(function (tableInfo) {
+      const table = tables[tableInfo.index];
+      const category = tableInfo.category;
+
+      if (!usedcategory.has(category)) {
+        const tableWrapper = document.createElement('div');
+        tableWrapper.appendChild(document.createElement('h2')).textContent = category;
+        tableWrapper.appendChild(table.cloneNode(true));
+
+        fragment.appendChild(tableWrapper);
+        usedcategory.add(category);
+      }
+    });
+
+    // Append the sorted tables to the container
+    container.appendChild(fragment);
+  </script>
+
+</body>
+
+</html>
+
+
+
+<style>
+  
+  nav {
+  
+    font-family: 'Mitr', sans-serif;
+    letter-spacing: 1px;
+    color: black;
+    font-weight: bold;
+  
+  }
+  
+  ul.navbar-nav.me-auto {
+  
+  margin-left: 1%;  
+  margin-top: 1%;
+  background-color: rgb(236, 236, 236);
+  padding-inline: 2%;
+  border-radius: 20px;
+  color: black;
+  font-size: clamp(5px, 1vw, 16px);
+  cursor: pointer;
+  
+  }
+  
+  .nav-item {
+  
+  margin-left: 10px;
+  
+    
+  }
+  
+  .nav-item:hover {
+  
+  background-color: rgb(211, 211, 211);
+  
+  
+  }
+  
+   
+  
+  select {
+  
+  
+  
+  border-radius: 5px;
+  width:60%;
+  background-color: rgb(197, 197, 197);
+  font-size: clamp(5px, 1vw, 16px);
+  margin-right: 2%;
+  outline: none;
+  border: none;
+  font-weight: bold;
+  padding-inline: 1%;
+  
+  }
+  
+  
+  button.btn {
+  
+  background-color: rgb(250, 69, 100);
+  border: none;
+  font-size: clamp(5px, 1vw, 16px);
+  
+  
+  }
+  
+  
+  input.form-control {
+  
+  outline: none;
+  border: none;
+  font-size: clamp(5px, 1vw, 16px);
+  
+  }
+  
+  ul.dropdown-menu {
+  
+  font-size: clamp(5px, 1vw, 16px);
+    
+  }
+  
+  
+  
+  
+    .profile-icon {
+      width: 20px;
+      height: 20px;
+      margin-right: 5px;
+      border-radius: 50%;
+    }
+  
+    @media (max-width: 1070px) {
+  
+      ul.navbar-nav.me-auto {
+  
+        
+        font-size: clamp(5px, 1.2vw, 18px);
+      
+        
+        }
+  
+        ul.dropdown-menu {
+  
+          font-size: clamp(5px, 1.2vw, 18px);
+          background-color: rgb(204, 204, 204);
+  
+  
+        }
+  
+  
+        button.btn {
+  
+       
+          font-size: clamp(5px, 1.2vw, 18px);
+          
+          
+          }
+  
+          input.form-control {
+  
+            font-size: clamp(5px, 1.2vw, 18px);
+            }
+  
+  
+            select {
+  
+              font-size: clamp(5px, 1.2vw, 18px);
+  
+            }
+          
+  
+    }
+  
+  
+    @media (max-width: 414px) {
+  
+      ul.navbar-nav.me-auto {
+  
+        
+        font-size: clamp(5px, 2.8vw, 32px);
+        border-radius: 5px;
+        
+        }
+  
+        ul.dropdown-menu {
+  
+          font-size: clamp(5px, 2.8vw, 32px);
+  
+        }
+  
+  
+        button.btn {
+  
+       
+          font-size: clamp(5px, 2.8vw, 32px);
+          
+          
+          }
+  
+          input.form-control {
+  
+            font-size: clamp(5px, 2.8vw, 32px);
+            }
+  
+  
+            select {
+  
+              font-size: clamp(5px, 2.8vw, 32px);
+  
+            }
+          
+  
+    }
+  
+  
+  
+  </style>
+  

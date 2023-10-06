@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="https://gcdnb.pbrd.co/images/cPhCVrB22ZLU.jpg?o=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+
+    <link rel="stylesheet" href="/static/open_report_issue.css">
+
+
+    <title>Yumradar</title>
+
+
+    
+
+
+
+</head>
+
+
+
+<div id="loader" class="loader"></div>
+
+<body style="background-color: #f4f4f4;">
+    
+    <nav class="navbar navbar-expand-lg"
+    style="background-color: white; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); min-width: 414px; ">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{{ url_for('index') }}"><img src="https://gcdnb.pbrd.co/images/yPa00YmfeCYP.png?o=1" alt=""
+          style="width: 170px; height:60px; border-radius: 10px;"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+
+        <ul class="navbar-nav me-auto mb-2">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" onclick="redirectToDetails('{{ url_for('index') }}')"
+             ><i class="fa-solid fa-house" style="margin-right: 5px;"></i>Home</a>
+          </li>
+
+
+          {% if 'username' in session %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="{{profile_pic_url}}" alt="" class="profile-icon">
+              {{ session['username'] }}
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" onclick="redirectToDetails('{{ url_for('profile') }}')">Profile setting</a>
+              </li>
+              <li><a class="dropdown-item" onclick="redirectToDetails('{{ url_for('bookmarks') }}')">Bookmarks</a></li>
+              <li><a class="dropdown-item" onclick="redirectToDetails('{{ url_for('help_desk') }}')">Help desk</a></li>
+              {% if session['is_admin'] %}
+              <li><a class="dropdown-item" onclick="redirectToDetails('{{ url_for('admin_dashboard') }}')">Admin Dashboard</a></li>
+              {% endif %}
+            </ul>
+            {% else %}
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" onclick="redirectToDetails('{{ url_for('login') }}')"
+            ><i class="fa-solid fa-right-to-bracket"
+                style="margin-right: 5px;"></i>Login</a>
+          </li>
+          {% endif %}
+
+
+
+          {% if 'username' in session %}
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" onclick="redirectToDetails('{{ url_for('logout') }}')"
+              ><i class="fa-solid fa-right-from-bracket"
+                style="margin-right: 5px;"></i>Logout</a>
+          </li>
+        </ul>
+        {% else %}
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" onclick="redirectToDetails('{{ url_for('register') }}')"
+          ><i class="fa-solid fa-user-plus"
+            style="margin-right: 5px;"></i>Register</a>
+        </li>
+        </ul>
+        {% endif %}
+
+
+        
+      </div>
+    </div>
+  </nav>
+
+
+
+<div class="main_container">
+
+
+
+
+
+<div class="message_report_container">
+
+
+<div class="go_back_button" onclick="goBack()"><i class="fa-solid fa-arrow-left"></i></div>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+
+
+<div class="user_ticket_logo"> User ticket <i class="fa-solid fa-flag" style="margin-left: 5px; color: rgb(238, 100, 123);"></i></div>
+
+
+{% for issue in issues %}
+
+<div class="from_email_container">
+
+
+    
+<strong>From: </strong>{{ issue[1] }}
+
+</div>
+
+<div class="issue_title_container">
+
+
+<strong>Subject: </strong>{{ issue[2] }}
+
+</div>
+
+<div class="description_container">
+
+{{ issue[3] }}
+
+
+</div>
+
+{% endfor %}
+
+    
+</div>
+
+
+    
+    
+  
+
+
+    
+</div>
+
+
+    
+
+    
+</div>
+
+
+
+<script>
+    function deleteIssue(issue_id) {
+        if (confirm("Are you sure you want to delete this issue?")) {
+            // Send an AJAX request to delete the issue
+            fetch(`/delete_issue/${issue_id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    // If the deletion is successful, remove the issue element from the DOM
+                    const issueElement = document.getElementById(`issue_${issue_id}`);
+                    if (issueElement) {
+                        issueElement.remove();
+                    }
+                } else {
+                    // Handle error case
+                    alert('Failed to delete issue');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    }
+    
+  </script>
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+crossorigin="anonymous"></script>
+</body>
+</html>
+
+
+
+<script>
+
+    function searchButtonClick() {
+        showLoader(); // Show the loading spinner when search starts
+        setTimeout(() => {
+            // Perform the search operation or submit the form
+            hideLoader();
+        }, 2000); // Adjust the delay as needed
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        // Hide the loading spinner once the page has finished loading
+        hideLoader();
+    });
+
+
+
+
+    function redirectToDetails(url) {
+        showLoader(); // Show the loading spinner when search starts
+        setTimeout(() => {
+            // Perform the search operation or submit the form
+            // ...
+            window.location.href = url;
+            hideLoader();
+        }, 900); // Adjust the delay as needed
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        // Hide the loading spinner once the page has finished loading
+        hideLoader();
+    });
+
+
+
+
+    function showLoader() {
+        const loader = document.getElementById("loader");
+        loader.style.display = "block";
+    }
+
+    function hideLoader() {
+        const loader = document.getElementById("loader");
+        loader.style.display = "none";
+    }
+
+
+</script>
+
+
+<style>
+  
+    nav {
+    
+      font-family: 'Mitr', sans-serif;
+      letter-spacing: 1px;
+      color: black;
+      font-weight: bold;
+    
+    }
+    
+    ul.navbar-nav.me-auto {
+    
+    margin-left: 1%;  
+    margin-top: 1%;
+    background-color: rgb(236, 236, 236);
+    padding-inline: 2%;
+    border-radius: 20px;
+    color: black;
+    font-size: clamp(5px, 1vw, 16px);
+    cursor: pointer;
+    
+    }
+    
+    .nav-item {
+    
+    margin-left: 10px;
+    
+      
+    }
+    
+    .nav-item:hover {
+    
+    background-color: rgb(211, 211, 211);
+    
+    
+    }
+    
+     
+    
+    select {
+    
+    
+    
+    border-radius: 5px;
+    width:60%;
+    background-color: rgb(197, 197, 197);
+    font-size: clamp(5px, 1vw, 16px);
+    margin-right: 2%;
+    outline: none;
+    border: none;
+    font-weight: bold;
+    padding-inline: 1%;
+    
+    }
+    
+    
+    button.btn {
+    
+    background-color: rgb(250, 69, 100);
+    border: none;
+    font-size: clamp(5px, 1vw, 16px);
+    
+    
+    }
+    
+    
+    input.form-control {
+    
+    outline: none;
+    border: none;
+    font-size: clamp(5px, 1vw, 16px);
+    
+    }
+    
+    ul.dropdown-menu {
+    
+    font-size: clamp(5px, 1vw, 16px);
+      
+    }
+    
+    
+    
+    
+      .profile-icon {
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+        border-radius: 50%;
+      }
+    
+      @media (max-width: 1070px) {
+    
+        ul.navbar-nav.me-auto {
+    
+          
+          font-size: clamp(5px, 1.2vw, 18px);
+        
+          
+          }
+    
+          ul.dropdown-menu {
+    
+            font-size: clamp(5px, 1.2vw, 18px);
+            background-color: rgb(204, 204, 204);
+    
+    
+          }
+    
+    
+          button.btn {
+    
+         
+            font-size: clamp(5px, 1.2vw, 18px);
+            
+            
+            }
+    
+            input.form-control {
+    
+              font-size: clamp(5px, 1.2vw, 18px);
+              }
+    
+    
+              select {
+    
+                font-size: clamp(5px, 1.2vw, 18px);
+    
+              }
+            
+    
+      }
+    
+    
+      @media (max-width: 414px) {
+    
+        ul.navbar-nav.me-auto {
+    
+          
+          font-size: clamp(5px, 2.8vw, 32px);
+          border-radius: 5px;
+          
+          }
+    
+          ul.dropdown-menu {
+    
+            font-size: clamp(5px, 2.8vw, 32px);
+    
+          }
+    
+    
+          button.btn {
+    
+         
+            font-size: clamp(5px, 2.8vw, 32px);
+            
+            
+            }
+    
+            input.form-control {
+    
+              font-size: clamp(5px, 2.8vw, 32px);
+              }
+    
+    
+              select {
+    
+                font-size: clamp(5px, 2.8vw, 32px);
+    
+              }
+            
+    
+      }
+    
+    
+    
+    </style>
+    

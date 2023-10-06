@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="/static/recommend.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="icon" type="image/png" href="https://gcdnb.pbrd.co/images/cPhCVrB22ZLU.jpg?o=1">
+
+
+
+
+
+
+</head>
+
+
+<title>YumRadar</title>
+
+<div id="loader" class="loader"></div>
+
+<body style="background-color: rgb(241, 241, 241)">
+  <div class="sticky">
+
+
+
+
+
+    <nav class="navbar navbar-expand-lg"
+    style="background-color: white; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); min-width: 414px; ">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{{ url_for('index') }}"><img src="https://gcdnb.pbrd.co/images/yPa00YmfeCYP.png?o=1" alt=""
+          style="width: 170px; height:60px; border-radius: 10px;"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+
+        <ul class="navbar-nav me-auto mb-2">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" onclick="redirectToDetails('{{ url_for('index') }}')"
+             ><i class="fa-solid fa-house" style="margin-right: 5px;"></i>Home</a>
+          </li>
+
+
+          {% if 'username' in session %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="{{profile_pic_url}}" alt="" class="profile-icon">
+              {{ session['username'] }}
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" onclick="redirectToDetails('{{ url_for('profile') }}')">Profile setting</a>
+              </li>
+              <li><a class="dropdown-item" onclick="redirectToDetails('{{ url_for('bookmarks') }}')">Bookmarks</a></li>
+              <li><a class="dropdown-item" onclick="redirectToDetails('{{ url_for('help_desk') }}')">Help desk</a></li>
+              {% if session['is_admin'] %}
+              <li><a class="dropdown-item" onclick="redirectToDetails('{{ url_for('admin_dashboard') }}')">Admin Dashboard</a></li>
+              {% endif %}
+            </ul>
+            {% else %}
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" onclick="redirectToDetails('{{ url_for('login') }}')"
+            ><i class="fa-solid fa-right-to-bracket"
+                style="margin-right: 5px;"></i>Login</a>
+          </li>
+          {% endif %}
+
+
+
+          {% if 'username' in session %}
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" onclick="redirectToDetails('{{ url_for('logout') }}')"
+              ><i class="fa-solid fa-right-from-bracket"
+                style="margin-right: 5px;"></i>Logout</a>
+          </li>
+        </ul>
+        {% else %}
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" onclick="redirectToDetails('{{ url_for('register') }}')"
+          ><i class="fa-solid fa-user-plus"
+            style="margin-right: 5px;"></i>Register</a>
+        </li>
+        </ul>
+        {% endif %}
+
+
+        <form class="d-flex" role="search" action="{{ url_for('recommend') }}" method="post">
+          <select id="location" name="location">
+            {% for location in location_select %}
+            <option value="{{ location }}"><i class="fa-solid fa-location-dot"></i>{{ location }}</option>
+            {% endfor %}
+          </select>
+          <input class="form-control me-2" type="search" placeholder="Search for Foods, Category, Resto" aria-label="Search " name="value"
+            id="value" style="background-color: rgb(212, 212, 212);">
+          <button class="btn btn-success" >Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+
+
+
+    <div class="filter_bar">
+
+
+      <div class="rating">
+        <input type="radio" id="star5" name="rating" value="5" onclick="filterRestaurantsByRating(5)" />
+        <label for="star5"></label>
+        <input type="radio" id="star4" name="rating" value="4" onclick="filterRestaurantsByRating(4)" />
+        <label for="star4"></label>
+        <input type="radio" id="star3" name="rating" value="3" onclick="filterRestaurantsByRating(3)" />
+        <label for="star3"></label>
+        <input type="radio" id="star2" name="rating" value="2" onclick="filterRestaurantsByRating(2)" />
+        <label for="star2"></label>
+        <input type="radio" id="star1" name="rating" value="1" onclick="filterRestaurantsByRating(1)" />
+        <label for="star1"></label>
+      </div>
+
+
+      <div class="refresh" onclick="refresh()"><i class="fa-solid fa-rotate"
+          style="margin-left: 15px; color: grey;"></i></div>
+
+
+
+      <button type="button" id="sortByNameBtn" class="btn btn-primary"
+        style="margin-left: 30px; background-color: rgb(218, 48, 85); border: none;"
+        onclick="toggleSortRestaurantsByName()">
+        <strong style="margin-right: 8px;">Sort</strong> <i class="fa-solid fa-arrow-up-z-a"></i>
+      </button>
+
+      <button type="button" id="sortByCostBtn" class="btn btn-primary"
+        style="margin-left: 30px; background-color: rgb(218, 48, 85); border: none;" onclick="sortRestaurantsByCost()">
+        <strong style="margin-right: 8px;">Sort</strong>
+        <i class="fa-solid fa-coins"></i>
+      </button>
+
+
+    </div>
+
+  </div>
+
+  {% if possible_dish_or_resto %}
+
+
+  <p
+    style="max-width:1263px; width:100%; margin: 0 auto; text-align:center; margin-top: 25px; font-size:20px; letter-spacing:1.5px; color:rgb(252, 32, 80);">
+    <i class="fa-solid fa-list" style="margin-right: 10px;"></i>Here are the possible restaurants that has Name,
+    Category or Dish of <strong>{{possible_dish_or_resto}}</strong> in <strong>{{user_location}}</strong></p>
+
+
+  {% endif %}
+
+  <div class="Container" id="restaurantContainer">
+
+
+
+    {% for restaurant in restaurants %}
+
+
+
+    <div class="restaurant" onclick="redirectToDetails('{{ url_for('details', name=restaurant.Resto_id) }}')"
+      style="cursor: pointer;">
+      <div class="image_container"><img src="{{ restaurant.image_url }}" alt=""></div>
+      <div class="details_container">
+        <div class="resto_name">
+          <p class="restaurant-name">{{restaurant.Resto_name}}</p>
+        </div>
+        <div class="details">
+          <div class="location"><i class="fa-sharp fa-solid fa-map-location-dot" style="margin-right: 10px;"></i>{{
+            restaurant.location }}</div>
+          <div class="ratings">{{restaurant.overall_ratings}}<i class="fa-solid fa-star"
+              style="margin-left: 5px; font-size:13px"></i></div>
+          <div class="cost"> Avg cost for two: {{restaurant.cost_for_two}}</div>
+          <div class="category"><i class="fa-solid fa-martini-glass-citrus"
+              style="margin-right: 7px; color: rgb(112, 111, 111);"></i>{{restaurant.category}}</div>
+        </div>
+      </div>
+    </div>
+
+
+
+    {% endfor %}
+
+  </div>
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    crossorigin="anonymous"></script>
+  <script>
+
+    function redirectToDetails(url) {
+      showLoader(); // Show the loading spinner
+      setTimeout(() => {
+        window.location.href = url; // Redirect to the details page after a delay (Simulating asynchronous operation)
+      }, 500);
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      // Hide the loading spinner once the page has finished loading
+      hideLoader();
+    });
+
+
+
+
+
+    function searchButtonClick() {
+      showLoader(); // Show the loading spinner when search starts
+      setTimeout(() => {
+        // Perform the search operation or submit the form
+        // ...
+        sortRestaurantsByName();
+        hideLoader();
+      }, 1000); // Adjust the delay as needed
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      // Hide the loading spinner once the page has finished loading
+      hideLoader();
+    });
+
+
+
+
+
+
+
+    let sortByNameAscending = false;
+
+    function toggleSortRestaurantsByName() {
+      sortByNameAscending = !sortByNameAscending;
+      showLoader(); // Show the loading spinner when sorting starts
+      setTimeout(() => {
+
+        hideLoader(); // Hide the loading spinner after a delay (Simulating asynchronous operation)
+      }, 1000);
+    }
+
+    let sortByNameAsc = true; // Variable to keep track of sorting order
+
+    function toggleSortRestaurantsByName() {
+      const container = document.getElementById("restaurantContainer");
+      const restaurantList = Array.from(container.getElementsByClassName("restaurant"));
+      const anchorTags = Array.from(container.getElementsByTagName("a"));
+
+      restaurantList.sort((a, b) => {
+        const nameA = a.querySelector(".restaurant-name").textContent.toLowerCase();
+        const nameB = b.querySelector(".restaurant-name").textContent.toLowerCase();
+        return nameA.localeCompare(nameB);
+      });
+
+      if (!sortByNameAsc) {
+        restaurantList.reverse();
+      }
+
+      const fragment = document.createDocumentFragment();
+
+      for (const restaurant of restaurantList) {
+        fragment.appendChild(restaurant);
+      }
+
+      showLoader(); // Show the loading spinner
+
+      setTimeout(() => {
+        const newContainer = document.createElement("div");
+
+        for (const anchorTag of anchorTags) {
+          const clonedAnchorTag = anchorTag.cloneNode(true);
+          newContainer.appendChild(clonedAnchorTag);
+        }
+
+        newContainer.appendChild(fragment);
+
+        container.innerHTML = newContainer.innerHTML;
+
+        hideLoader(); // Hide the loading spinner after a delay (Simulating asynchronous operation)
+
+        // Toggle the sorting order for the next click
+        sortByNameAsc = !sortByNameAsc;
+      }, 1000);
+    }
+
+
+
+
+
+    // Track the current sorting order
+    let isAscending = true;
+
+    // Function to sort restaurants by cost_for_two
+    function sortRestaurantsByCost() {
+      const restaurants = document.querySelectorAll('.restaurant');
+      const restaurantsArray = Array.from(restaurants);
+
+      showLoader(); // Show the loading spinner
+      setTimeout(() => {
+        restaurantsArray.sort((a, b) => {
+          const costA = parseInt(a.querySelector('.cost').textContent.trim().split(':')[1]);
+          const costB = parseInt(b.querySelector('.cost').textContent.trim().split(':')[1]);
+
+          if (isAscending) {
+            return costA - costB;
+          } else {
+            return costB - costA;
+          }
+        });
+
+        const restaurantContainer = document.getElementById('restaurantContainer');
+        restaurantContainer.innerHTML = '';
+
+        restaurantsArray.forEach(restaurant => {
+          restaurantContainer.appendChild(restaurant);
+        });
+
+        isAscending = !isAscending;
+        hideLoader(); // Hide the loading spinner after a delay (Simulating asynchronous operation)
+      }, 1000);
+    }
+
+    function filterRestaurantsByRating(rating) {
+      const container = document.getElementById("restaurantContainer");
+      const restaurants = container.getElementsByClassName("restaurant");
+
+      showLoader(); // Show the loading spinner
+      setTimeout(() => {
+        for (const restaurant of restaurants) {
+          const ratingElement = restaurant.querySelector(".ratings");
+          const restaurantRating = parseInt(ratingElement.textContent);
+          if (restaurantRating === rating) {
+            restaurant.style.display = "block";
+          } else {
+            restaurant.style.display = "none";
+          }
+        }
+        hideLoader(); // Hide the loading spinner after a delay (Simulating asynchronous operation)
+      }, 1000);
+    }
+
+    function showLoader() {
+      const loader = document.getElementById("loader");
+      loader.style.display = "block";
+    }
+
+    function hideLoader() {
+      const loader = document.getElementById("loader");
+      loader.style.display = "none";
+    }
+
+
+
+
+    function refresh() {
+
+
+      window.location.reload();
+
+    }
+
+
+
+
+
+
+  </script>
+
+</body>
+
+</html>
+
+
+<style>
+  
+  nav {
+  
+    font-family: 'Mitr', sans-serif;
+    letter-spacing: 1px;
+    color: black;
+    font-weight: bold;
+  
+  }
+  
+  ul.navbar-nav.me-auto {
+  
+  margin-left: 1%;  
+  margin-top: 1%;
+  background-color: rgb(236, 236, 236);
+  padding-inline: 2%;
+  border-radius: 20px;
+  color: black;
+  font-size: clamp(5px, 1vw, 16px);
+  cursor: pointer;
+  
+  }
+  
+  .nav-item {
+  
+  margin-left: 10px;
+  
+    
+  }
+  
+  .nav-item:hover {
+  
+  background-color: rgb(211, 211, 211);
+  
+  
+  }
+  
+   
+  
+  select {
+  
+  
+  
+  border-radius: 5px;
+  width:60%;
+  background-color: rgb(197, 197, 197);
+  font-size: clamp(5px, 1vw, 16px);
+  margin-right: 2%;
+  outline: none;
+  border: none;
+  font-weight: bold;
+  padding-inline: 1%;
+  
+  }
+  
+  
+  button.btn {
+  
+  background-color: rgb(250, 69, 100);
+  border: none;
+  font-size: clamp(5px, 1vw, 16px);
+  
+  
+  }
+  
+  
+  input.form-control {
+  
+  outline: none;
+  border: none;
+  font-size: clamp(5px, 1vw, 16px);
+  
+  }
+  
+  ul.dropdown-menu {
+  
+  font-size: clamp(5px, 1vw, 16px);
+    
+  }
+  
+  
+  
+  
+    .profile-icon {
+      width: 20px;
+      height: 20px;
+      margin-right: 5px;
+      border-radius: 50%;
+    }
+  
+    @media (max-width: 1070px) {
+  
+      ul.navbar-nav.me-auto {
+  
+        
+        font-size: clamp(5px, 1.2vw, 18px);
+      
+        
+        }
+  
+        ul.dropdown-menu {
+  
+          font-size: clamp(5px, 1.2vw, 18px);
+          background-color: rgb(204, 204, 204);
+  
+  
+        }
+  
+  
+        button.btn {
+  
+       
+          font-size: clamp(5px, 1.2vw, 18px);
+          
+          
+          }
+  
+          input.form-control {
+  
+            font-size: clamp(5px, 1.2vw, 18px);
+            }
+  
+  
+            select {
+  
+              font-size: clamp(5px, 1.2vw, 18px);
+  
+            }
+          
+  
+    }
+  
+  
+    @media (max-width: 414px) {
+  
+      ul.navbar-nav.me-auto {
+  
+        
+        font-size: clamp(5px, 2.8vw, 32px);
+        border-radius: 5px;
+        
+        }
+  
+        ul.dropdown-menu {
+  
+          font-size: clamp(5px, 2.8vw, 32px);
+  
+        }
+  
+  
+        button.btn {
+  
+       
+          font-size: clamp(5px, 2.8vw, 32px);
+          
+          
+          }
+  
+          input.form-control {
+  
+            font-size: clamp(5px, 2.8vw, 32px);
+            }
+  
+  
+            select {
+  
+              font-size: clamp(5px, 2.8vw, 32px);
+  
+            }
+          
+  
+    }
+  
+  
+  
+  </style>
+  

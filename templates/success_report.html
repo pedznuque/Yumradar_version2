@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="https://gcdnb.pbrd.co/images/cPhCVrB22ZLU.jpg?o=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+
+
+  <title>Yumradar</title>
+
+
+  <div id="loader" class="loader"></div>
+
+  <style>
+    .main_container {
+
+     
+      width: 100%;
+      height: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding-block: 10%;
+
+      
+
+    }
+
+    .logo_success i {
+
+      font-size: clamp(5px, 7vw, 130px);
+      color: rgb(238, 76, 117);
+      -webkit-animation: slide-in-elliptic-top-fwd 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s both;
+	        animation: slide-in-elliptic-top-fwd 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s both;
+      
+
+    }
+
+    .success_board {
+
+
+      background-color: white;
+      width: 30%;
+      aspect-ratio: 5/3;
+      border-radius: 10px;
+      margin-top: 3%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-block: 3%;
+
+      box-shadow: 5px 6px 14px -6px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 5px 6px 14px -6px rgba(0,0,0,0.75);
+    -moz-box-shadow: 5px 6px 14px -6px rgba(0,0,0,0.75);
+    -webkit-animation: slide-in-elliptic-top-fwd 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s both;
+	        animation: slide-in-elliptic-top-fwd 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s both;
+
+    }
+
+    .success_text {
+
+
+      max-width: 80%;
+      font-size: clamp(5px, 1.5vw, 19px);
+      text-align: center;
+      letter-spacing: 1px;
+      font-weight: bold;
+      color: rgb(240, 84, 92);
+
+    }
+
+    .success_board i {
+
+      font-size: clamp(5px, 2.5vw, 40px);
+      margin-top: 2%;
+      color: rgb(240, 84, 92);
+
+    }
+
+    .reminder {
+
+      max-width: 80%;
+    
+    font-size: clamp(5px, 1.5vw, 19px);
+      text-align: center;
+      letter-spacing: 1px;
+      font-weight: bold;
+      color: rgb(240, 84, 92);
+      margin-top: 10%;
+
+    }
+
+    a {
+
+      margin-top: 4%;
+      background-color: rgb(238, 76, 117);
+      padding-inline: 3%;
+      padding-block: 1%;
+      border-radius: 10px;
+      color: white;
+      font-size: clamp(5px, 1.5vw, 19px);
+      letter-spacing: 2px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+
+      -moz-box-shadow: 5px 6px 14px -6px rgba(0,0,0,0.75);
+    -webkit-animation: slide-in-elliptic-top-fwd 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s both;
+	        animation: slide-in-elliptic-top-fwd 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s both;
+    }
+
+
+    
+    @media (max-width: 1070px) {
+
+      .logo_success i {
+
+        font-size: clamp(5px, 10vw, 170px);
+   
+  
+      }
+
+      .success_board {
+
+
+        width: 60%;
+
+
+      }
+
+      .success_board i {
+
+
+        font-size: clamp(5px, 3vw, 60px);
+      }
+      .success_text {
+
+        font-size: clamp(5px, 2vw, 40px);
+
+
+      }
+
+      .reminder {
+
+        font-size: clamp(5px, 2vw, 40px);
+
+
+      }
+
+      a {
+
+
+        font-size: clamp(5px, 2.5vw, 25px);
+
+      }
+
+
+    }
+
+    @media (max-width: 1070px) {
+
+      .logo_success i {
+
+        font-size: clamp(5px, 10vw, 190px);
+   
+  
+      }
+
+      .success_board {
+
+
+        width: 80%;
+        font-size: clamp(5px, 4vw, 60px);
+
+      }
+
+      .success_board i {
+
+
+        font-size: clamp(5px, 4vw, 70px);
+      }
+      .success_text {
+
+        font-size: clamp(5px, 2.5vw, 50px);
+
+
+      }
+
+      .reminder {
+
+        font-size: clamp(5px, 2.5vw, 50px);
+
+
+      }
+
+      a {
+
+
+        font-size: clamp(5px, 4vw, 40px);
+
+      }
+
+
+    }
+
+
+
+    @-webkit-keyframes slide-in-elliptic-top-fwd {
+      0% {
+        -webkit-transform: translateY(-600px) rotateX(-30deg) scale(0);
+                transform: translateY(-600px) rotateX(-30deg) scale(0);
+        -webkit-transform-origin: 50% 100%;
+                transform-origin: 50% 100%;
+        opacity: 0;
+      }
+      100% {
+        -webkit-transform: translateY(0) rotateX(0) scale(1);
+                transform: translateY(0) rotateX(0) scale(1);
+        -webkit-transform-origin: 50% 1400px;
+                transform-origin: 50% 1400px;
+        opacity: 1;
+      }
+    }
+    @keyframes slide-in-elliptic-top-fwd {
+      0% {
+        -webkit-transform: translateY(-600px) rotateX(-30deg) scale(0);
+                transform: translateY(-600px) rotateX(-30deg) scale(0);
+        -webkit-transform-origin: 50% 100%;
+                transform-origin: 50% 100%;
+        opacity: 0;
+      }
+      100% {
+        -webkit-transform: translateY(0) rotateX(0) scale(1);
+                transform: translateY(0) rotateX(0) scale(1);
+        -webkit-transform-origin: 50% 1400px;
+                transform-origin: 50% 1400px;
+        opacity: 1;
+      }
+    }
+    
+
+    .loader {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 7px solid #f3f3f3;
+      border-top: 7px solid #67df30;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 0.7s linear infinite;
+      display: none; /* Add this line to hide the spinner by default */
+      z-index: 9999;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+  </style>
+
+</head>
+
+<body style="background-color: #f4f4f4;">
+
+
+
+  <div class="main_container">
+
+
+    <div class="logo_success"><i class="fa-solid fa-square-check"></i></div>
+
+
+
+    <div class="success_board">
+
+      <div class="success_text">
+
+        Thank you for reporting the issue. We have received your ticket. We will get in touch with you at the email
+        address you provided.
+
+      </div>
+
+      <i class="fa-regular fa-face-laugh-beam"></i>
+
+
+      <div class="reminder">
+
+        Please note that multiple reports for the same issue are not necessary. Our team will address your concern based
+        on the information you provided in your initial report. Thank you for your cooperation.
+
+      </div>
+
+    </div>
+
+    <a onclick="redirectToDetails('{{ url_for('index') }}')"><div class="continue_button">
+
+      Continue
+
+    </div></a>
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
+
+
+<script>
+
+
+
+  function redirectToDetails(url) {
+      showLoader(); // Show the loading spinner when search starts
+      setTimeout(() => {
+        // Perform the search operation or submit the form
+        // ...
+        window.location.href = url;
+        hideLoader();
+      }, 900); // Adjust the delay as needed
+    }
+  
+    document.addEventListener("DOMContentLoaded", function () {
+      // Hide the loading spinner once the page has finished loading
+      hideLoader();
+    });
+  
+  
+  
+  
+    function showLoader() {
+      const loader = document.getElementById("loader");
+      loader.style.display = "block";
+    }
+  
+    function hideLoader() {
+      const loader = document.getElementById("loader");
+      loader.style.display = "none";
+    }
+
+</script>
